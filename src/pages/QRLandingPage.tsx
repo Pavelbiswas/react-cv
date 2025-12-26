@@ -12,7 +12,7 @@ const QRLandingPage: React.FC = () => {
       try {
         setLoading(true);
         const fileName = `pavel.${region}.json`;
-        const response = await fetch(`/data/${fileName}`);
+        const response = await fetch(`${import.meta.env.BASE_URL}data/${fileName}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -45,7 +45,7 @@ const QRLandingPage: React.FC = () => {
     );
   }
 
-  const cvUrl = `https://pavelbiswas.github.io/react-cv?region=${region}&lang=${lang}`;
+  const cvUrl = `https://pavelbiswas.github.io/react-cv/?region=${region}&lang=${lang}`;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-600 to-secondary-600 dark:from-primary-700 dark:to-secondary-700 flex items-center justify-center p-4">

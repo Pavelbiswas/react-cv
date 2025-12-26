@@ -16,7 +16,7 @@ const CardPage: React.FC = () => {
       try {
         setLoading(true);
         const fileName = `pavel.${region}.json`;
-        const response = await fetch(`/data/${fileName}`);
+        const response = await fetch(`${import.meta.env.BASE_URL}data/${fileName}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
