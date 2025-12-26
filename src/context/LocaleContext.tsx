@@ -1,45 +1,66 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+
+type Lang = 'en' | 'ru';
+type Region = 'ru' | 'uae';
 
 interface LocaleContextType {
-  lang: 'en' | 'ru';
-  region: 'ru' | 'uae';
-  setLang: (lang: 'en' | 'ru') => void;
-  setRegion: (region: 'ru' | 'uae') => void;
+  lang: Lang;
+  region: Region;
+  setLang: (lang: Lang) => void;
+  setRegion: (region: Region) => void;
 }
 
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
-const detectLanguage = (): 'en' | 'ru' => {
-  const browserLang = navigator.language.toLowerCase();
-  return browserLang.startsWith('ru') ? 'ru' : 'en';
+/* ------------------ Helpers ------------------ */
+
+const detectLanguage = (): Lang => {
+  return navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en';
 };
 
-const detectRegion = (): 'ru' | 'uae' => {
-  const browserLang = navigator.language.toLowerCase();
-  // Simple detection based on language
-  // In production, you'd use geolocation API or IP-based service
-  return browserLang.includes('ar') || browserLang.includes('ae') ? 'uae' : 'ru';
+const detectRegion = (): Region => {
+  return navigator.language.toLowerCase().includes('ru') ? 'ru' : 'uae';
 };
+
+const defaultLangByRegion: Record<Region, Lang> = {
+  ru: 'ru',
+  uae: 'en',
+};
+
+/* ------------------ Provider ------------------ */
 
 export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lang, setLangState] = useState<'en' | 'ru'>(() => {
-    const stored = localStorage.getItem('lang') as 'en' | 'ru' | null;
-    return stored || detectLanguage();
+  const [region, setRegionState] = useState<Region>(() => {
+    return (localStorage.getItem('region') as Region) || detectRegion();
   });
 
-  const [region, setRegionState] = useState<'ru' | 'uae'>(() => {
-    const stored = localStorage.getItem('region') as 'ru' | 'uae' | null;
-    return stored || detectRegion();
+  const [lang, setLangState] = useState<Lang>(() => {
+    return (
+      (localStorage.getItem('lang') as Lang) ||
+      defaultLangByRegion[region] ||
+      detectLanguage()
+    );
   });
 
-  const setLang = (newLang: 'en' | 'ru') => {
-    setLangState(newLang);
-    localStorage.setItem('lang', newLang);
+  /* ---- Persist changes ---- */
+
+  useEffect(() => {
+    localStorage.setItem('region', region);
+  }, [region]);
+
+  useEffect(() => {
+    localStorage.setItem('lang', lang);
+  }, [lang]);
+
+  /* ---- Controlled setters ---- */
+
+  const setRegion = (newRegion: Region) => {
+    setRegionState(newRegion);
+    setLangState(defaultLangByRegion[newRegion]);
   };
 
-  const setRegion = (newRegion: 'ru' | 'uae') => {
-    setRegionState(newRegion);
-    localStorage.setItem('region', newRegion);
+  const setLang = (newLang: Lang) => {
+    setLangState(newLang);
   };
 
   return (
@@ -49,9 +70,11 @@ export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   );
 };
 
+/* ------------------ Hook ------------------ */
+
 export const useLocale = () => {
   const context = useContext(LocaleContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useLocale must be used within a LocaleProvider');
   }
   return context;
