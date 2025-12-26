@@ -45,9 +45,8 @@ const QRLandingPage: React.FC = () => {
     );
   }
 
-  const cvUrl =  `${window.location.origin}` +
-  `${import.meta.env.BASE_URL}` +
-  `?view=card&region=${region}&lang=${lang}`;
+  const cvUrl = `${window.location.origin}${import.meta.env.BASE_URL}` +
+  `?view=cv&region=${region}&lang=${lang}`;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-600 to-secondary-600 dark:from-primary-700 dark:to-secondary-700 flex items-center justify-center p-4">
