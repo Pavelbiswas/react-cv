@@ -79,6 +79,14 @@ const CVPage: React.FC = () => {
           </article>
         )}
 
+        {data.relocation?.[region] && (
+        <article className="mb-8">
+          <p className="text-sm text-gray-600 dark:text-gray-400 italic bg-gray-50 dark:bg-gray-900 border-l-4 border-blue-400 pl-4 py-2 rounded">
+            {data.relocation[region]}
+          </p>
+        </article>
+      )}
+
         <Skills data={data} />
         <Experience data={data} />
         <Education data={data} />
