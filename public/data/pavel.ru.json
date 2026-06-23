@@ -40,9 +40,16 @@
     ],
     "experience": [
       {
+      "company": "ZemosoLabs",
+      "title": "Старший разработчик программного обеспечения",
+      "period": "Фев 2026 - Июнь 2026",
+      "description": "Использовал Cursor AI для разработки сложного, ориентированного на Python документационного проекта для клиента, предназначенного для медицинских работников. Проектировал масштабируемые веб-архитектуры с использованием современных JavaScript-фреймворков, оптимизируя производительность клиентской стороны и быстродействие системы. Сотрудничал с кросс-функциональными продуктовыми командами для проектирования корпоративных решений, обеспечивая чистоту кода и успешное внедрение функций. Оптимизировал процессы развертывания и проводил тщательный анализ кода для поддержания инженерных стандартов.",
+      "technologies": ["React", "AI", "Python"]
+      },
+      {
         "company": "Techmango",
         "title": "Assistant Tech Lead",
-        "period": "July 2025 - Present",
+        "period": "July 2025 - Jan 2026",
         "description": "Working as an Arc XP developer for web apps like Beacon Media for publications as a migration project. Working as a Migration counterpart for the Orthofi legacy system to React. Managing other junior developers and troubleshooting their queries. Actively participating in the project management scenario with prior experience and advice.",
         "technologies": ["React", "Arc XP", "Angular JS"]
       },
@@ -136,9 +143,16 @@
     ],
     "experience": [
       {
+        "company": "ZemosoLabs",
+        "title": "Старший разработчик программного обеспечения",
+        "period": "Фев 2026 - Июнь 2026",
+        "description": "Использовал Cursor AI для разработки сложного, ориентированного на Python документационного проекта для клиента из медицинской сферы. Проектировал масштабируемые веб-архитектуры с использованием современных JavaScript-фреймворков, оптимизируя производительность клиентской части и быстродействие системы. Сотрудничал с кросс-функциональными продуктовыми командами для проектирования корпоративных решений, обеспечивая чистоту кода и успешное внедрение функций. Оптимизировал процессы развертывания и проводил тщательный анализ кода для поддержания инженерных стандартов.",
+        "technologies": ["React", "AI", "Python"]
+      },
+      {
         "company": "Techmango",
         "title": "Assistant Tech Lead",
-        "period": "July 2025 - Present",
+        "period": "July 2025 - Jan 2026",
         "description": "Работаю разработчиком Arc XP для веб-приложений как Beacon Media для публикаций в проекте миграции. Работаю как партнер по миграции для системы Orthofi в React. Управляю младшими разработчиками и решаю их проблемы. Активно участвую в проектной деятельности с предварительным опытом и советами.",
         "technologies": ["React", "Arc XP", "Angular JS"]
       },
